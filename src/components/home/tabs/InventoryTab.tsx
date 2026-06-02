@@ -1,5 +1,4 @@
-import { X, Check, AlertCircle } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
+import { X, Check } from 'lucide-react'
 
 const ANTES_POINTS = [
   'Erros Manuais Constantes',
@@ -235,115 +234,357 @@ export function InventoryAntes() {
   )
 }
 
-function Sparkline({ data }: { data: number[] }) {
-  const min = Math.min(...data),
-    range = Math.max(...data) - min || 1
-  const points = data
-    .map((d, i) => `${(i / (data.length - 1)) * 36},${12 - ((d - min) / range) * 12}`)
-    .join(' ')
-  return (
-    <svg width="36" height="12" className="overflow-visible">
-      <polyline
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        points={points}
-        className="text-blue-violet-400"
-      />
-    </svg>
-  )
-}
-
-const DEPOIS_ROWS = [
-  {
-    prod: 'Parafuso Sextavado',
-    est: '12',
-    max: '50',
-    status: 'Repor',
-    badge: 'bg-[#FEF2F2] text-red-700 border-red-100',
-    sparkline: [20, 18, 15, 14, 12],
-  },
-  {
-    prod: 'Porca M8',
-    est: '145',
-    max: '150',
-    status: 'Atenção',
-    badge: 'bg-orange-50 text-orange-700 border-orange-200',
-    sparkline: [150, 148, 147, 146, 145],
-  },
-  {
-    prod: 'Arruela Lisa',
-    est: '890',
-    max: '200',
-    status: 'Saudável',
-    badge: 'bg-green-50 text-green-700 border-green-100',
-    sparkline: [850, 860, 875, 880, 890],
-  },
-]
-
 export function InventoryDepois() {
   return (
     <div className="flex flex-col flex-1 w-full h-full animate-fade-in gap-6">
-      {/* Visual Mockup */}
+      {/* Visual Mockup - Dynamic Generation Animation */}
       <div className="h-[280px] w-full rounded-xl border border-blue-violet-100 shadow-sm flex flex-col overflow-hidden flex-shrink-0">
-        <div className="flex-1 bg-gradient-to-b from-white to-blue-violet-50 p-3 sm:p-4 flex flex-col gap-4 overflow-hidden">
-          <div className="grid grid-cols-3 gap-2 shrink-0">
-            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 flex flex-col border border-skip-neutral-1350 shadow-sm">
-              <span className="text-[10px] text-skip-neutral-800 uppercase tracking-wider font-medium">
-                Itens
-              </span>
-              <span className="text-lg font-semibold text-skip-neutral-400">247</span>
-            </div>
-            <div className="bg-[#FEF2F2] rounded-lg p-2.5 flex flex-col border border-red-100 shadow-sm">
-              <span className="text-[10px] text-red-600 uppercase tracking-wider font-medium flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" /> Alertas
-              </span>
-              <span className="text-lg font-semibold text-red-700">3</span>
-            </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-lg p-2.5 flex flex-col border border-skip-neutral-1350 shadow-sm">
-              <span className="text-[10px] text-skip-neutral-800 uppercase tracking-wider font-medium">
-                Rupturas
-              </span>
-              <span className="text-lg font-semibold text-skip-neutral-400">0</span>
-            </div>
-          </div>
-          <div className="text-[11px] w-full border border-skip-neutral-1350 rounded-lg overflow-x-auto shadow-sm flex-1 bg-white flex flex-col min-h-0">
-            <div className="flex-1 overflow-y-auto">
-              <table className="w-full text-left border-collapse whitespace-nowrap min-w-max">
-                <thead>
-                  <tr className="bg-skip-neutral-1450 border-b border-skip-neutral-1350 text-skip-neutral-600 sticky top-0 z-10">
-                    <th className="p-2.5 font-medium">Produto</th>
-                    <th className="p-2.5 font-medium text-right">Estoque</th>
-                    <th className="p-2.5 font-medium text-center">Status</th>
-                    <th className="p-2.5 font-medium text-right">Tendência</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white text-skip-neutral-500">
-                  {DEPOIS_ROWS.map((r, i) => (
-                    <tr key={i} className="border-b border-skip-neutral-1350 last:border-0">
-                      <td className="p-2.5 font-medium text-skip-neutral-400">{r.prod}</td>
-                      <td className="p-2.5 text-right">
-                        {r.est} <span className="text-skip-neutral-800">/ {r.max}</span>
-                      </td>
-                      <td className="p-2.5 text-center">
-                        <Badge
-                          variant="outline"
-                          className={`text-[9px] h-5 px-2 font-medium ${r.badge}`}
-                        >
-                          {r.status}
-                        </Badge>
-                      </td>
-                      <td className="p-2.5 flex justify-end items-center h-full">
-                        <Sparkline data={r.sparkline} />
-                      </td>
-                    </tr>
+        <div className="flex-1 bg-gradient-to-b from-white to-blue-violet-50 flex items-center justify-center overflow-hidden relative p-4">
+          <svg
+            viewBox="0 0 600 450"
+            className="w-full h-full max-w-[600px] overflow-visible"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <defs>
+              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow
+                  dx="0"
+                  dy="4"
+                  stdDeviation="8"
+                  flood-color="#0F172A"
+                  flood-opacity="0.06"
+                />
+              </filter>
+              <filter id="nodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="4"
+                  flood-color="#4F46E5"
+                  flood-opacity="0.6"
+                />
+              </filter>
+              <filter id="scanGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow
+                  dx="0"
+                  dy="2"
+                  stdDeviation="4"
+                  flood-color="#4F46E5"
+                  flood-opacity="0.3"
+                />
+              </filter>
+              <linearGradient id="scanGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4F46E5" stop-opacity="0" />
+                <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.15" />
+              </linearGradient>
+              <clipPath id="canvasClip">
+                <rect x="40" y="140" width="520" height="270" rx="16" />
+              </clipPath>
+            </defs>
+            <style>
+              {`
+                .uig-float-group { animation: uig-floatGroup 6s ease-in-out infinite; }
+                .uig-sparkle { animation: uig-sparkleSpin 2.5s linear infinite; transform-origin: 0px 0px; }
+                .uig-progress-track { stroke-dasharray: 320; animation: uig-trackProgress 6s linear infinite; }
+                .uig-node-1 { animation: uig-node-1 6s ease-out infinite; transform-origin: 140px 100px; }
+                .uig-node-2 { animation: uig-node-2 6s ease-out infinite; transform-origin: 220px 100px; }
+                .uig-node-3 { animation: uig-node-3 6s ease-out infinite; transform-origin: 300px 100px; }
+                .uig-node-4 { animation: uig-node-4 6s ease-out infinite; transform-origin: 380px 100px; }
+                .uig-node-5 { animation: uig-node-5 6s ease-out infinite; transform-origin: 460px 100px; }
+                .uig-scan-line { animation: uig-scanSweep 6s linear infinite; }
+                .uig-step-1 { animation: uig-step-1 6s ease-out infinite; }
+                .uig-step-2 { animation: uig-step-2 6s ease-out infinite; }
+                .uig-step-3 { animation: uig-step-3 6s ease-out infinite; }
+
+                @keyframes uig-floatGroup {
+                  0%, 100% { transform: translateY(0); }
+                  50% { transform: translateY(-8px); }
+                }
+                @keyframes uig-sparkleSpin {
+                  0% { transform: rotate(0deg) scale(0.8); opacity: 0.7; }
+                  50% { transform: rotate(180deg) scale(1.2); opacity: 1; }
+                  100% { transform: rotate(360deg) scale(0.8); opacity: 0.7; }
+                }
+                @keyframes uig-trackProgress {
+                  0%, 9% { stroke-dashoffset: 320; opacity: 0; }
+                  10% { stroke-dashoffset: 320; opacity: 1; }
+                  80%, 85% { stroke-dashoffset: 0; opacity: 1; }
+                  88%, 100% { stroke-dashoffset: 0; opacity: 0; }
+                }
+                @keyframes uig-node-1 {
+                  0%, 9% { transform: scale(0); opacity: 0; }
+                  12%, 85% { transform: scale(1); opacity: 1; }
+                  88%, 100% { transform: scale(0); opacity: 0; }
+                }
+                @keyframes uig-node-2 {
+                  0%, 26% { transform: scale(0); opacity: 0; }
+                  29%, 85% { transform: scale(1); opacity: 1; }
+                  88%, 100% { transform: scale(0); opacity: 0; }
+                }
+                @keyframes uig-node-3 {
+                  0%, 43% { transform: scale(0); opacity: 0; }
+                  46%, 85% { transform: scale(1); opacity: 1; }
+                  88%, 100% { transform: scale(0); opacity: 0; }
+                }
+                @keyframes uig-node-4 {
+                  0%, 61% { transform: scale(0); opacity: 0; }
+                  64%, 85% { transform: scale(1); opacity: 1; }
+                  88%, 100% { transform: scale(0); opacity: 0; }
+                }
+                @keyframes uig-node-5 {
+                  0%, 78% { transform: scale(0); opacity: 0; }
+                  81%, 85% { transform: scale(1); opacity: 1; }
+                  88%, 100% { transform: scale(0); opacity: 0; }
+                }
+                @keyframes uig-scanSweep {
+                  0%, 9% { transform: translateY(140px); opacity: 0; }
+                  10% { transform: translateY(140px); opacity: 1; }
+                  80%, 85% { transform: translateY(410px); opacity: 1; }
+                  88%, 100% { transform: translateY(410px); opacity: 0; }
+                }
+                @keyframes uig-step-1 {
+                  0%, 14% { opacity: 0; transform: translateY(10px); }
+                  19%, 85% { opacity: 1; transform: translateY(0); }
+                  88%, 100% { opacity: 0; transform: translateY(10px); }
+                }
+                @keyframes uig-step-2 {
+                  0%, 35% { opacity: 0; transform: translateY(10px); }
+                  40%, 85% { opacity: 1; transform: translateY(0); }
+                  88%, 100% { opacity: 0; transform: translateY(10px); }
+                }
+                @keyframes uig-step-3 {
+                  0%, 43% { opacity: 0; transform: translateY(10px); }
+                  48%, 85% { opacity: 1; transform: translateY(0); }
+                  88%, 100% { opacity: 0; transform: translateY(10px); }
+                }
+              `}
+            </style>
+
+            <g className="uig-float-group">
+              {/* Progress Track */}
+              <path
+                d="M 140 100 L 460 100"
+                stroke="#E2E8F0"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <path
+                d="M 140 100 L 460 100"
+                stroke="#4F46E5"
+                stroke-width="4"
+                stroke-linecap="round"
+                className="uig-progress-track"
+              />
+
+              {/* Base Nodes */}
+              <circle cx="140" cy="100" r="8" fill="#E2E8F0" />
+              <circle cx="220" cy="100" r="8" fill="#E2E8F0" />
+              <circle cx="300" cy="100" r="8" fill="#E2E8F0" />
+              <circle cx="380" cy="100" r="8" fill="#E2E8F0" />
+              <circle cx="460" cy="100" r="8" fill="#E2E8F0" />
+
+              {/* Active Nodes */}
+              <circle
+                cx="140"
+                cy="100"
+                r="8"
+                fill="#4F46E5"
+                className="uig-node-1"
+                filter="url(#nodeGlow)"
+              />
+              <circle
+                cx="220"
+                cy="100"
+                r="8"
+                fill="#4F46E5"
+                className="uig-node-2"
+                filter="url(#nodeGlow)"
+              />
+              <circle
+                cx="300"
+                cy="100"
+                r="8"
+                fill="#4F46E5"
+                className="uig-node-3"
+                filter="url(#nodeGlow)"
+              />
+              <circle
+                cx="380"
+                cy="100"
+                r="8"
+                fill="#4F46E5"
+                className="uig-node-4"
+                filter="url(#nodeGlow)"
+              />
+              <circle
+                cx="460"
+                cy="100"
+                r="8"
+                fill="#4F46E5"
+                className="uig-node-5"
+                filter="url(#nodeGlow)"
+              />
+
+              {/* AI Indicator Pill */}
+              <g transform="translate(300, 40)">
+                <rect
+                  x="-84"
+                  y="-20"
+                  width="168"
+                  height="40"
+                  rx="20"
+                  fill="#ffffff"
+                  filter="url(#softShadow)"
+                />
+                <g transform="translate(-60, 0)">
+                  <g className="uig-sparkle">
+                    <path
+                      d="M 0 -8 C 1 -3 3 -1 8 0 C 3 1 1 3 0 8 C -1 3 -3 1 -8 0 C -3 -1 -1 -3 0 -8 Z"
+                      fill="#4F46E5"
+                    />
+                  </g>
+                </g>
+                <text
+                  x="-40"
+                  y="4"
+                  font-family="monospace"
+                  font-size="13"
+                  font-weight="600"
+                  fill="#4F46E5"
+                  letter-spacing="1"
+                >
+                  GENERATING UI
+                </text>
+              </g>
+
+              {/* Canvas Background */}
+              <rect
+                x="40"
+                y="140"
+                width="520"
+                height="270"
+                rx="16"
+                fill="#ffffff"
+                filter="url(#softShadow)"
+              />
+
+              {/* Masked Elements */}
+              <g clip-path="url(#canvasClip)">
+                {/* Step 1: Banner */}
+                <g className="uig-step-1">
+                  <rect x="60" y="160" width="480" height="40" rx="6" fill="#F1F5F9" />
+                  <rect x="76" y="172" width="16" height="16" rx="4" fill="#4F46E5" opacity="0.2" />
+                  <rect x="100" y="176" width="80" height="8" rx="4" fill="#CBD5E1" />
+                  <rect x="424" y="172" width="56" height="16" rx="4" fill="#E2E8F0" />
+                  <rect x="488" y="172" width="36" height="16" rx="4" fill="#E2E8F0" />
+                </g>
+
+                {/* Step 2: Left Column */}
+                <g className="uig-step-2">
+                  <rect
+                    x="60"
+                    y="216"
+                    width="120"
+                    height="174"
+                    rx="6"
+                    fill="#F8FAFC"
+                    stroke="#E2E8F0"
+                    stroke-width="1"
+                  />
+                  <rect x="76" y="232" width="60" height="6" rx="3" fill="#94A3B8" />
+                  <rect x="76" y="252" width="88" height="6" rx="3" fill="#E2E8F0" />
+                  <rect x="76" y="268" width="70" height="6" rx="3" fill="#E2E8F0" />
+                  <rect x="76" y="284" width="80" height="6" rx="3" fill="#E2E8F0" />
+                  <rect x="76" y="300" width="50" height="6" rx="3" fill="#E2E8F0" />
+
+                  <rect x="76" y="330" width="60" height="6" rx="3" fill="#94A3B8" />
+                  <rect x="76" y="350" width="88" height="6" rx="3" fill="#E2E8F0" />
+                  <rect x="76" y="366" width="40" height="6" rx="3" fill="#E2E8F0" />
+                </g>
+
+                {/* Step 3: Right Column */}
+                <g className="uig-step-3">
+                  <rect
+                    x="196"
+                    y="216"
+                    width="344"
+                    height="174"
+                    rx="6"
+                    fill="#ffffff"
+                    stroke="#E2E8F0"
+                    stroke-width="1"
+                    filter="url(#softShadow)"
+                  />
+                  <rect x="196" y="216" width="344" height="32" rx="6" fill="#F1F5F9" />
+                  <rect x="216" y="228" width="40" height="6" rx="3" fill="#94A3B8" />
+                  <rect x="320" y="228" width="60" height="6" rx="3" fill="#94A3B8" />
+                  <rect x="420" y="228" width="40" height="6" rx="3" fill="#94A3B8" />
+                  <rect x="480" y="228" width="40" height="6" rx="3" fill="#94A3B8" />
+
+                  {[0, 32, 64, 96].map((offset, i) => (
+                    <g key={i} transform={`translate(0, ${256 + offset})`}>
+                      <rect
+                        x="216"
+                        y="0"
+                        width={40 + ((i * 10) % 30)}
+                        height="6"
+                        rx="3"
+                        fill="#CBD5E1"
+                      />
+                      <rect
+                        x="320"
+                        y="0"
+                        width={60 + ((i * 20) % 40)}
+                        height="6"
+                        rx="3"
+                        fill="#E2E8F0"
+                      />
+                      <rect
+                        x="420"
+                        y="-2"
+                        width="30"
+                        height="10"
+                        rx="5"
+                        fill={['#4F46E5', '#10B981', '#F59E0B', '#4F46E5'][i]}
+                        opacity="0.1"
+                      />
+                      <rect
+                        x="425"
+                        y="0"
+                        width="20"
+                        height="6"
+                        rx="3"
+                        fill={['#4F46E5', '#10B981', '#F59E0B', '#4F46E5'][i]}
+                        opacity="0.6"
+                      />
+                      <rect
+                        x="480"
+                        y="0"
+                        width={30 + ((i * 5) % 20)}
+                        height="6"
+                        rx="3"
+                        fill="#E2E8F0"
+                      />
+                      {i < 3 && <path d="M 196 16 L 540 16" stroke="#F1F5F9" stroke-width="1" />}
+                    </g>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                </g>
+
+                {/* Scan Sweep Line */}
+                <g className="uig-scan-line">
+                  <rect x="40" y="-60" width="520" height="60" fill="url(#scanGradient)" />
+                  <rect
+                    x="40"
+                    y="0"
+                    width="520"
+                    height="2"
+                    fill="#4F46E5"
+                    filter="url(#scanGlow)"
+                  />
+                </g>
+              </g>
+            </g>
+          </svg>
         </div>
       </div>
 
