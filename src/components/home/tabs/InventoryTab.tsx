@@ -1,4 +1,4 @@
-import { X, Check, AlertCircle, FileSpreadsheet, Table } from 'lucide-react'
+import { X, Check, AlertCircle } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 
 const ANTES_POINTS = [
@@ -16,74 +16,198 @@ const DEPOIS_POINTS = [
 export function InventoryAntes() {
   return (
     <div className="flex flex-col flex-1 w-full h-full animate-fade-in gap-6">
-      {/* Visual Mockup */}
-      <div className="h-[280px] w-full border border-skip-neutral-1350 rounded-lg bg-skip-neutral-1450/50 p-4 relative overflow-hidden flex-shrink-0 shadow-inner">
-        {/* Spreadsheet 1 */}
-        <div className="absolute top-4 left-4 right-10 h-40 bg-white rounded-md border border-skip-neutral-1300 shadow-md rotate-[-2deg] flex flex-col overflow-hidden opacity-95 z-10 hover:rotate-0 hover:z-40 transition-transform">
-          <div className="bg-green-600 p-1.5 flex items-center gap-2 text-white">
-            <Table className="w-3 h-3" />
-            <span className="text-[10px] font-medium">Controle_Estoque_FINAL.xlsx</span>
-          </div>
-          <div className="p-2 flex-1 flex flex-col bg-white">
-            <table className="w-full text-left text-[9px] border-collapse">
-              <thead>
-                <tr className="border-b border-skip-neutral-1300 text-skip-neutral-500">
-                  <th className="p-1 font-medium">Produto</th>
-                  <th className="p-1 font-medium text-right">Qtd</th>
-                  <th className="p-1 font-medium text-right">Min</th>
-                </tr>
-              </thead>
-              <tbody className="text-skip-neutral-700">
-                <tr className="border-b border-skip-neutral-1300">
-                  <td className="p-1">Parafuso Sextavado</td>
-                  <td className="p-1 text-right">12</td>
-                  <td className="p-1 text-right">50</td>
-                </tr>
-                <tr className="border-b border-skip-neutral-1300 bg-red-50">
-                  <td className="p-1 text-red-600 font-medium">#REF!</td>
-                  <td className="p-1 text-right text-red-600 font-medium">#VALOR!</td>
-                  <td className="p-1 text-right text-red-600">100</td>
-                </tr>
-                <tr className="border-b border-skip-neutral-1300">
-                  <td className="p-1">Porca M8</td>
-                  <td className="p-1 text-right">145</td>
-                  <td className="p-1 text-right">150</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      {/* Visual Mockup - Dynamic AI Animation */}
+      <div className="h-[280px] w-full border border-skip-neutral-1350 rounded-lg bg-skip-neutral-1450/50 p-4 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-inner">
+        <svg
+          viewBox="0 0 400 300"
+          className="w-full h-full max-w-[400px]"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <defs>
+            <filter id="shadow-sm" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow
+                dx="0"
+                dy="4"
+                stdDeviation="6"
+                flood-color="#0F172A"
+                flood-opacity="0.05"
+              />
+            </filter>
+            <filter id="shadow-lg" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow
+                dx="0"
+                dy="10"
+                stdDeviation="15"
+                flood-color="#0F172A"
+                flood-opacity="0.08"
+              />
+            </filter>
+            <linearGradient id="shimmer-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+              <stop offset="50%" stop-color="#ffffff" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+            </linearGradient>
+            <clipPath id="shimmer-clip">
+              <rect x="40" y="120" width="320" height="140" rx="16" />
+            </clipPath>
+          </defs>
+          <style>
+            {`
+              .ai-inv-group { animation: ai-inv-float-svg 6s ease-in-out infinite; }
+              .ai-inv-typing { animation: ai-inv-typing-bar 6s ease-in-out infinite; }
+              .ai-inv-cursor { animation: ai-inv-cursor-move 6s ease-in-out infinite; }
+              .ai-inv-cursor-inner { animation: ai-inv-cursor-blink 0.8s step-end infinite; }
+              .ai-inv-btn { animation: ai-inv-btn-click 6s ease-in-out infinite; transform-origin: 340px 75px; }
+              .ai-inv-btn-glow { animation: ai-inv-btn-glow 6s ease-out infinite; transform-origin: 340px 75px; fill: #4F46E5; }
+              .ai-inv-bubble { animation: ai-inv-bubble-appear 6s ease-out infinite; }
+              .ai-inv-skel-1 { animation: ai-inv-skeleton-1 6s ease-out infinite; fill: #E2E8F0; }
+              .ai-inv-skel-2 { animation: ai-inv-skeleton-2 6s ease-out infinite; fill: #E2E8F0; }
+              .ai-inv-skel-3 { animation: ai-inv-skeleton-3 6s ease-out infinite; fill: #E2E8F0; }
+              .ai-inv-shimmer { animation: ai-inv-shimmer-effect 6s ease-out infinite; }
 
-        {/* Spreadsheet 2 */}
-        <div className="absolute top-24 left-12 right-2 h-36 bg-white rounded-md border border-skip-neutral-1300 shadow-lg rotate-[3deg] flex flex-col overflow-hidden z-20 hover:rotate-0 hover:z-40 transition-transform">
-          <div className="bg-yellow-500 p-1.5 flex items-center gap-2 text-white">
-            <FileSpreadsheet className="w-3 h-3" />
-            <span className="text-[10px] font-medium">Fornecedores_v2.csv</span>
-          </div>
-          <div className="p-2 flex-1 flex flex-col bg-white">
-            <table className="w-full text-left text-[9px] border-collapse">
-              <thead>
-                <tr className="border-b border-skip-neutral-1300 text-skip-neutral-500">
-                  <th className="p-1 font-medium">Cód</th>
-                  <th className="p-1 font-medium">Fornecedor</th>
-                  <th className="p-1 font-medium text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody className="text-skip-neutral-700">
-                <tr className="border-b border-skip-neutral-1300">
-                  <td className="p-1">PR-01</td>
-                  <td className="p-1">M-Corp</td>
-                  <td className="p-1 text-right text-red-500 font-medium">Falta</td>
-                </tr>
-                <tr>
-                  <td className="p-1 font-medium text-orange-500">ERRO_SINC</td>
-                  <td className="p-1 text-orange-500">#N/A</td>
-                  <td className="p-1 text-right text-orange-500">-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+              @keyframes ai-inv-float-svg {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+              }
+              @keyframes ai-inv-typing-bar {
+                0%, 5% { width: 0px; }
+                30%, 85% { width: 220px; }
+                95%, 100% { width: 0px; }
+              }
+              @keyframes ai-inv-cursor-move {
+                0%, 5% { transform: translateX(0px); }
+                30%, 85% { transform: translateX(225px); }
+                95%, 100% { transform: translateX(0px); }
+              }
+              @keyframes ai-inv-cursor-blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+              }
+              @keyframes ai-inv-btn-click {
+                0%, 28% { transform: scale(1); fill: #94A3B8; }
+                32% { transform: scale(0.9); fill: #4F46E5; }
+                36%, 85% { transform: scale(1); fill: #4F46E5; }
+                95%, 100% { transform: scale(1); fill: #94A3B8; }
+              }
+              @keyframes ai-inv-btn-glow {
+                0%, 32% { opacity: 0; transform: scale(1); }
+                36% { opacity: 0.4; transform: scale(1.2); }
+                50%, 100% { opacity: 0; transform: scale(1.6); }
+              }
+              @keyframes ai-inv-bubble-appear {
+                0%, 35% { opacity: 0; transform: translateY(15px); }
+                45%, 85% { opacity: 1; transform: translateY(0); }
+                95%, 100% { opacity: 0; transform: translateY(15px); }
+              }
+              @keyframes ai-inv-skeleton-1 {
+                0%, 45% { width: 0px; }
+                55%, 85% { width: 280px; }
+                95%, 100% { width: 0px; }
+              }
+              @keyframes ai-inv-skeleton-2 {
+                0%, 50% { width: 0px; }
+                60%, 85% { width: 210px; }
+                95%, 100% { width: 0px; }
+              }
+              @keyframes ai-inv-skeleton-3 {
+                0%, 55% { width: 0px; }
+                65%, 85% { width: 252px; }
+                95%, 100% { width: 0px; }
+              }
+              @keyframes ai-inv-shimmer-effect {
+                0%, 60% { transform: translateX(-150px); opacity: 0; }
+                65% { opacity: 1; }
+                75% { transform: translateX(350px); opacity: 0; }
+                100% { transform: translateX(-150px); opacity: 0; }
+              }
+            `}
+          </style>
+
+          <g className="ai-inv-group">
+            {/* Prompt Input */}
+            <rect
+              x="40"
+              y="50"
+              width="320"
+              height="50"
+              rx="25"
+              fill="#ffffff"
+              filter="url(#shadow-sm)"
+            />
+
+            {/* Typing Bar Background */}
+            <rect x="60" y="71" width="220" height="8" rx="4" fill="#F1F5F9" />
+            {/* Animated Typing Bar */}
+            <rect x="60" y="71" height="8" rx="4" className="ai-inv-typing" />
+
+            {/* Cursor */}
+            <g className="ai-inv-cursor">
+              <rect
+                x="60"
+                y="67"
+                width="2"
+                height="16"
+                fill="#4F46E5"
+                className="ai-inv-cursor-inner"
+              />
+            </g>
+
+            {/* Action Button Glow */}
+            <circle cx="340" cy="75" r="14" className="ai-inv-btn-glow" />
+
+            {/* Action Button & Icon */}
+            <circle cx="340" cy="75" r="14" className="ai-inv-btn" />
+            <path
+              d="M 340 68 L 334 74 L 338 74 L 338 82 L 342 82 L 342 74 L 346 74 Z"
+              fill="#ffffff"
+            />
+
+            {/* AI Response Bubble */}
+            <g className="ai-inv-bubble">
+              <rect
+                x="40"
+                y="120"
+                width="320"
+                height="140"
+                rx="16"
+                fill="#ffffff"
+                filter="url(#shadow-lg)"
+              />
+
+              {/* AI Brand / Header */}
+              <circle cx="60" cy="140" r="10" fill="#4F46E5" opacity="0.1" />
+              <circle cx="60" cy="140" r="5" fill="#4F46E5" />
+              <rect x="80" y="136" width="60" height="8" rx="4" fill="#CBD5E1" />
+
+              {/* Skeleton Lines */}
+              <g transform="translate(60, 160)">
+                <rect x="0" y="0" width="280" height="10" rx="5" fill="#F1F5F9" />
+                <rect x="0" y="0" height="10" rx="5" className="ai-inv-skel-1" />
+
+                <rect x="0" y="24" width="280" height="10" rx="5" fill="#F1F5F9" />
+                <rect x="0" y="24" height="10" rx="5" className="ai-inv-skel-2" />
+
+                <rect x="0" y="48" width="280" height="10" rx="5" fill="#F1F5F9" />
+                <rect x="0" y="48" height="10" rx="5" className="ai-inv-skel-3" />
+
+                <rect x="0" y="72" width="280" height="10" rx="5" fill="#F1F5F9" />
+                <rect x="0" y="72" height="10" rx="5" className="ai-inv-skel-1" />
+              </g>
+
+              {/* Shimmer Sweep */}
+              <g clip-path="url(#shimmer-clip)">
+                <rect
+                  x="40"
+                  y="120"
+                  width="100"
+                  height="140"
+                  fill="url(#shimmer-grad)"
+                  className="ai-inv-shimmer"
+                />
+              </g>
+            </g>
+          </g>
+        </svg>
       </div>
 
       {/* Text Content */}
