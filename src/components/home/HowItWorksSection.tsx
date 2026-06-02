@@ -43,15 +43,35 @@ export function HowItWorksSection() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="flex flex-col border border-skip-neutral-1350 rounded-[20px] p-[28px] bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
+              className={cn(
+                'flex flex-col border rounded-[20px] p-[28px] shadow-sm transition-shadow duration-300',
+                index === 2
+                  ? 'bg-gradient-to-br from-blue-violet-600 to-indigo-900 border-transparent hover:shadow-md hover:shadow-blue-violet-600/30'
+                  : 'bg-white border-skip-neutral-1350 hover:shadow-md',
+              )}
             >
-              <span className="font-mono text-2xl md:text-3xl text-blue-violet-600 font-semibold mb-4 block">
+              <span
+                className={cn(
+                  'font-mono text-2xl md:text-3xl font-semibold mb-4 block',
+                  index === 2 ? 'text-white/90' : 'text-blue-violet-600',
+                )}
+              >
                 {step.number}
               </span>
-              <h3 className="font-heading text-lg md:text-xl font-semibold text-skip-neutral-300 mb-3 leading-[1.2]">
+              <h3
+                className={cn(
+                  'font-heading text-lg md:text-xl font-semibold mb-3 leading-[1.2]',
+                  index === 2 ? 'text-white' : 'text-skip-neutral-300',
+                )}
+              >
                 {step.title}
               </h3>
-              <p className="font-body text-sm md:text-base text-skip-neutral-800 leading-[1.4]">
+              <p
+                className={cn(
+                  'font-body text-sm md:text-base leading-[1.4]',
+                  index === 2 ? 'text-white/80' : 'text-skip-neutral-800',
+                )}
+              >
                 {step.description}
               </p>
             </div>
