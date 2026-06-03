@@ -61,12 +61,10 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
           )}
           style={{ animationFillMode: 'both' }}
         >
-          O criador de Sistemas Internos <br className="hidden md:block" />
-          mais{' '}
+          Crie sistemas,{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-violet-600 to-fuchsia-600">
-            fácil e intuitivo
-          </span>{' '}
-          do mundo
+            fácil, intuitivo
+          </span>
         </h2>
 
         {/* Subheadline */}
