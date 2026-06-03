@@ -241,12 +241,13 @@
   }
 }
 
-@layer components {
-  /* ─── Tipografia Instrument Sans — papéis (config-only, sem font-size) ─────────
-     Uma família, três configurações por papel. A hierarquia vem da CONFIGURAÇÃO,
-     não do tamanho — escolha o role certo e combine com o token de size desejado
-     (text-h1, text-body-l, etc.). Letter-spacing em `em` pra escalar em qualquer size.
-     Stylistic sets são obrigatórios nos display roles; body nunca ativa. ──────── */
+/* ─── Tipografia Instrument Sans — papéis (config-only, sem font-size) ───────────
+   Uma família, três configurações por papel. A hierarquia vem da CONFIGURAÇÃO,
+   não do tamanho — escolha o role certo e combine com o token de size desejado
+   (text-h1, text-body-l, etc.). Letter-spacing em `em` pra escalar em qualquer size.
+   Stylistic sets são obrigatórios nos display roles; body nunca ativa.
+   IMPORTANTE: fora de @layer de propósito — sem isso o Tailwind faz tree-shaking
+   das classes não usadas no JSX e elas somem do bundle. ─────────────────────── */
 
   /* Heading — títulos de seção e hero copy. Compacto e confiante.
      Referência: 40px / 650 / 110% / -1px (-1px@40px = -0.025em) */
@@ -294,7 +295,6 @@
       'ss08' on,
       'ss09' on;
   }
-}
 
 @layer utilities {
   /* ─── Gradient utilities ─────────────────────────────────────────────────── */
