@@ -54,10 +54,7 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
           )}
           style={{ animationFillMode: 'both' }}
         >
-          Crie sistemas,{' '}
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-violet-600 to-fuchsia-600">
-            fácil, intuitivo
-          </span>
+          Crie sistemas, <span className="text-white">fácil, intuitivo</span>
         </h2>
 
         {/* Subheadline */}
