@@ -30,9 +30,9 @@ export default {
       fontFamily: {
         // Primary — Body text, standard UI
         sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
-        // Secondary — Display, headings, buttons
-        display: ['"Booster Sans Variable"', 'system-ui', 'sans-serif'],
-        heading: ['"Booster Sans Variable"', 'system-ui', 'sans-serif'],
+        // Display, headings, buttons
+        display: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+        heading: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
         // Body — paragraphs, descriptions
         body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
         // Secondary — code, technical, data
@@ -197,7 +197,7 @@ export default {
         'body-xxxl': ['32px', { lineHeight: '1.3' }],
         'body-4xl': ['36px', { lineHeight: '1.3' }],
 
-        // Headings (Booster Sans Variable — Recalibrated Tokens)
+        // Headings (Instrument Sans — Recalibrated Tokens)
         h1: ['64px', { lineHeight: '1.1', fontWeight: '700' }],
         h2: ['48px', { lineHeight: '1.1', fontWeight: '700' }],
         h3: ['36px', { lineHeight: '1.1', fontWeight: '600' }],

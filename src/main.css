@@ -1,14 +1,18 @@
 /* Global styles - Theme, font, utilities, animations and global components */
 
-/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
-
-/* ─── Custom Fonts ──────────────────────────────────────────────────────────── */
+/* ─── Instrument Sans (self-hosted, variable) ───────────────────────────────── */
 @font-face {
-  font-family: 'Booster Sans Variable';
-  src: url('/fonts/BoosterSans-Variable.ttf') format('truetype');
-  font-weight: 100 900;
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Variable.woff2') format('woff2');
+  font-weight: 400 700;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/InstrumentSans-Italic-Variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -193,7 +197,9 @@
 }
 
 @layer base {
-  /* ─── Heading font variation settings (Booster Sans Variable: wdth 90) and Line Height ───── */
+  /* ─── Heading personality (Instrument Sans + stylistic sets) ─────────────────
+     Aplica a config do papel "heading" a todos os títulos; o size/weight vem dos
+     tokens text-h1…h6 abaixo. ──────────────────────────────────────────────── */
   .font-heading,
   h1,
   h2,
@@ -201,8 +207,9 @@
   h4,
   h5,
   h6 {
-    font-variation-settings: 'wdth' 90;
     line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-feature-settings: 'ss01' on, 'ss02' on, 'ss03' on, 'ss04' on, 'ss05' on, 'ss07' on, 'ss08' on, 'ss09' on, 'ss10' on;
   }
 
   h1 {
@@ -222,6 +229,44 @@
   }
   h6 {
     @apply text-h6;
+  }
+}
+
+@layer components {
+  /* ─── Tipografia Instrument Sans — papéis (config-only, sem font-size) ─────────
+     Uma família, três configurações por papel. A hierarquia vem da CONFIGURAÇÃO,
+     não do tamanho — escolha o role certo e combine com o token de size desejado
+     (text-h1, text-body-l, etc.). Letter-spacing em `em` pra escalar em qualquer size.
+     Stylistic sets são obrigatórios nos display roles; body nunca ativa. ──────── */
+
+  /* Heading — títulos de seção e hero copy. Compacto e confiante.
+     Referência: 40px / 650 / 110% / -1px (-1px@40px = -0.025em) */
+  .type-heading {
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-feature-settings: 'ss01' on, 'ss02' on, 'ss03' on, 'ss04' on, 'ss05' on, 'ss07' on, 'ss08' on, 'ss09' on, 'ss10' on;
+  }
+
+  /* Body — toda leitura corrida. Neutralidade > personalidade.
+     Referência: 16px / 400 / 140%. NUNCA ativar stylistic sets. */
+  .type-body {
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.4;
+    font-feature-settings: normal;
+  }
+
+  /* Uppercase — section markers, eyebrows, labels. ≤ 5 palavras.
+     Referência: 16px / 650 / 110% / -0.16px (-0.16px@16px = -0.01em) */
+  .type-uppercase {
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    font-feature-settings: 'ss01' on, 'ss02' on, 'ss03' on, 'ss04' on, 'ss05' on, 'ss07' on, 'ss08' on, 'ss09' on;
   }
 }
 
