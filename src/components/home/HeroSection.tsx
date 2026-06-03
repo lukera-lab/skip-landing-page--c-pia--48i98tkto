@@ -6,6 +6,7 @@ import logoWhiteUrl from '@/assets/logo-skip-white-1b688.webp'
 import heroBgUrl from '@/assets/bg-hero-skip-8319b.webp'
 import liveBgUrl from '@/assets/bg-dark-e697d.webp'
 import { VideoPlayer } from './VideoPlayer'
+import { SkipHeroBackground } from './SkipHeroBackground'
 
 export function HeroSection({ isLive = false }: { isLive?: boolean }) {
   const handleScrollToOffer = () => {
@@ -26,20 +27,12 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
 
       {/* Background wrapper with fade-out mask */}
       <div className="absolute inset-0 z-0 [mask-image:linear-gradient(to_bottom,white_80%,transparent_100%)] pointer-events-none overflow-hidden">
-        {/* Hero Background Image */}
-        <img
-          src={isLive ? liveBgUrl : heroBgUrl}
-          alt="Hero Background"
-          className={cn(
-            'absolute inset-0 w-full h-full object-cover object-top',
-            isLive && 'opacity-30',
-          )}
-          aria-hidden="true"
-        />
+        {/* Hero Animated Background */}
+        <SkipHeroBackground isLive={isLive} />
 
         {/* Pulsating Overlay for Live Page */}
         {isLive && (
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.20)_0%,transparent_80%)] animate-pulse-slow mix-blend-screen pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(79,70,229,0.20)_0%,transparent_80%)] animate-pulse-slow mix-blend-screen pointer-events-none z-0" />
         )}
       </div>
 
