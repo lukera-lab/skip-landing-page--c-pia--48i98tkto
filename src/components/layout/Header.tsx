@@ -12,7 +12,7 @@ export function Header() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-black flex items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-md flex items-center">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Logo Area */}
         <Link to="/" className="flex items-center gap-3 z-50">
