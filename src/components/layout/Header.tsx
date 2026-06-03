@@ -12,7 +12,7 @@ export function Header() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-md flex items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-transparent backdrop-blur-md flex items-center border-none outline-none">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Logo Area */}
         <Link to="/" className="flex items-center gap-3 z-50">
@@ -29,7 +29,7 @@ export function Header() {
             <a
               key={link.label}
               href={link.href}
-              className="text-white/90 text-[15px] font-medium hover:text-white transition-colors hover:underline underline-offset-4 decoration-white/30"
+              className="text-white/90 text-[15px] font-medium hover:text-white transition-colors border-none outline-none"
             >
               {link.label}
             </a>
@@ -45,11 +45,11 @@ export function Header() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-white z-50 p-2 -mr-2"
+          className="md:hidden text-white z-50 p-2 -mr-2 border-none outline-none"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={24} strokeWidth={1} /> : <Menu size={24} strokeWidth={1} />}
         </button>
 
         {/* Mobile Navigation Menu */}
