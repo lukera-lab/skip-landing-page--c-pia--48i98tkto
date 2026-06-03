@@ -1,0 +1,86 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
+
+export function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const navLinks = [
+    { label: 'Solutions', href: '#solutions' },
+    { label: 'Docs', href: '#docs' },
+    { label: 'Pricing', href: '#pricing' },
+  ]
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-black flex items-center">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
+        {/* Logo Area */}
+        <Link to="/" className="flex items-center gap-3 z-50">
+          <div
+            className="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-cyan-400 via-indigo-500 to-pink-500"
+            style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+          >
+            <svg
+              className="w-4 h-4 text-white/90 ml-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={4}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+          <span className="text-white text-2xl font-bold tracking-tight">Skip</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-white/90 text-[15px] font-medium hover:text-white transition-colors hover:underline underline-offset-4 decoration-white/30"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Desktop CTA */}
+        <div className="hidden md:flex items-center">
+          <button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-7 h-10 font-medium text-[15px] border-0 transition-colors">
+            Login
+          </button>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-white z-50 p-2 -mr-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-md flex flex-col items-center justify-center gap-8 md:hidden px-6 pt-20 z-40">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-white text-2xl font-medium hover:text-indigo-400 transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg px-8 h-12 w-full max-w-xs text-lg mt-6 font-medium transition-colors">
+              Login
+            </button>
+          </div>
+        )}
+      </div>
+    </header>
+  )
+}

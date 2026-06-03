@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Footer } from './layout/Footer'
+import { Header } from './layout/Header'
 
 export default function Layout() {
   useEffect(() => {
@@ -39,7 +40,8 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-violet-100 selection:text-violet-900">
-      <main className="flex-1 flex flex-col">
+      <Header />
+      <main className="flex-1 flex flex-col pt-20">
         <Outlet />
       </main>
       <Footer />
