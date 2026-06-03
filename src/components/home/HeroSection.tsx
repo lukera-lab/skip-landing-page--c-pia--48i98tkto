@@ -1,10 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
-import logoUrl from '@/assets/logo-skip-black-85aeb.svg'
 import logoWhiteUrl from '@/assets/logo-skip-white-1b688.webp'
-import heroBgUrl from '@/assets/bg-hero-skip-8319b.webp'
-import liveBgUrl from '@/assets/bg-dark-e697d.webp'
 import { VideoPlayer } from './VideoPlayer'
 import { SkipHeroBackground } from '@/components/SkipHeroBackground'
 
@@ -16,7 +13,7 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
   return (
     <section
       className={cn(
-        'relative flex flex-col items-center py-32 w-full min-h-[600px] md:min-h-[800px]',
+        'relative flex flex-col items-center py-32 w-full min-h-[600px] md:min-h-[800px] bg-black',
         isLive && 'bg-skip-neutral-300 overflow-hidden',
       )}
     >
@@ -34,7 +31,7 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
         <div
           className={cn(
             'absolute inset-0 z-10 pointer-events-none',
-            isLive ? 'bg-black/20' : 'bg-white/40',
+            isLive ? 'bg-black/20' : 'bg-transparent',
           )}
         />
 
@@ -47,18 +44,13 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
       <div className="max-w-[1100px] w-full flex flex-col items-center text-center mx-auto px-5 relative z-10">
         {/* Logo Icon */}
         <div className="flex items-center justify-center mb-6 animate-fade-in-down">
-          <img
-            src={isLive ? logoWhiteUrl : logoUrl}
-            alt="Skip Logo"
-            className="h-10 sm:h-12 w-auto drop-shadow-sm"
-          />
+          <img src={logoWhiteUrl} alt="Skip Logo" className="h-10 sm:h-12 w-auto drop-shadow-sm" />
         </div>
 
         {/* Main Headline */}
         <h2
           className={cn(
-            'font-display text-[28px] leading-[1.1em] sm:text-5xl lg:text-[64px] sm:leading-[1.1] font-semibold tracking-tight animate-fade-in-up w-full sm:max-w-none mx-auto',
-            isLive ? 'text-white' : 'text-skip-neutral-0',
+            'font-display text-[28px] leading-[1.1em] sm:text-5xl lg:text-[64px] sm:leading-[1.1] font-semibold tracking-tight animate-fade-in-up w-full sm:max-w-none mx-auto text-white',
           )}
           style={{ animationFillMode: 'both' }}
         >
@@ -72,7 +64,7 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
         <p
           className={cn(
             'font-body text-base sm:text-lg lg:text-xl max-w-[640px] mx-auto animate-fade-in-up leading-[1.3] mt-4 mb-4',
-            isLive ? 'text-skip-neutral-1000' : 'text-skip-neutral-800',
+            isLive ? 'text-skip-neutral-1000' : 'text-slate-300',
           )}
           style={{ animationDelay: '100ms', animationFillMode: 'both' }}
         >
@@ -87,8 +79,7 @@ export function HeroSection({ isLive = false }: { isLive?: boolean }) {
         >
           <span
             className={cn(
-              'font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-semibold',
-              isLive ? 'text-blue-violet-500' : 'text-blue-violet-600',
+              'font-mono text-[10px] sm:text-xs tracking-[0.15em] uppercase font-semibold text-blue-violet-500',
             )}
           >
             [Sem o custo de contratar desenvolvedores]
