@@ -16,21 +16,11 @@ export function Header() {
       <div className="w-full max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
         {/* Logo Area */}
         <Link to="/" className="flex items-center gap-3 z-50">
-          <div
-            className="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-cyan-400 via-indigo-500 to-pink-500"
-            style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
-          >
-            <svg
-              className="w-4 h-4 text-white/90 ml-0.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={4}
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </div>
-          <span className="text-white text-2xl font-bold tracking-tight">Skip</span>
+          <img
+            src="/assets/logo-skip-white-1b688-D7aboadx.webp"
+            alt="Skip Logo"
+            className="h-8 w-auto drop-shadow-sm"
+          />
         </Link>
 
         {/* Desktop Navigation */}
